@@ -6,6 +6,8 @@ node{
     sh 'mvn package'
   }
   stage('Start-App'){
-    sh 'java -jar ./target/gs-serving-web-content-0.1.0.jar & read -t 300 ;  kill $!'
+    sh 'java -jar ./target/gs-serving-web-content-0.1.0.jar'
+    sh 'sleep(300);'
+    sh 'ps | grep gs-serving-web-content-0.1.0.jar | awk {'print $1'} | head -n 1 | xargs kill -6'
   }
 }
