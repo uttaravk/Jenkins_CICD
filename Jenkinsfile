@@ -6,6 +6,6 @@ node{
     sh 'mvn package'
   }
   stage('Start-App'){
-    sh 'java -jar ./target/gs-serving-web-content-0.1.0.jar'
+    sh 'java -jar ./target/gs-serving-web-content-0.1.0.jar & read -t 300 ;  kill $!'
   }
 }
