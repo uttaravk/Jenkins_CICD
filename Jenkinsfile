@@ -18,6 +18,7 @@ node{
   }
   stage('Docker-create-img'){
    sh 'cp ./target/gs-serving-web-content-0.1.0.jar .'
+   sh 'mv gs-serving-web-content-0.1.0.jar WebApp.jar'
    sh 'docker build -t latest .'
    sh 'docker push ukulkarni/webapp-repo'
   }
