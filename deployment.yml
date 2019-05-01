@@ -1,37 +1,37 @@
 ---
-kind: Service
-apiVersion: v1
+kind:             Service
+apiVersion:       v1
 metadata:
-  name: webapp-service
+  name:           webapp-service
 spec:
   selector:
-    app: webapp-1
+    app:          webapp-1
   ports:
-    - protocol: "TCP"
+    - protocol:   "TCP"
       # Port accessible inside cluster
-      port: 8085
+      port:       8085
       # Port to forward to inside the pod
       targetPort: 8085
       # Port accessible outside cluster
-      nodePort: 30002
-  type: LoadBalancer
+      nodePort:   30002
+  type:           LoadBalancer
 
 
 
 ---
-apiVersion: extensions/v1beta1
-kind: Deployment
+apiVersion:       extensions/v1beta1
+kind:             Deployment
 metadata:
-  name: webapp-deployment
+  name:           webapp-deployment
 spec:
-  replicas: 5
+  replicas:       3
   template:
     metadata:
       labels:
-        app: webapp-1
+        app:      webapp-1
     spec:
       containers:
-        - name: webapp-1
-          image: ukulkarni/webapp-repo
+        - name:   webapp-1
+          image:  ukulkarni/webapp-repo
           ports:
-            - containerPort: 8085	
+            - containerPort: 8085
