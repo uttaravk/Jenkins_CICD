@@ -5,14 +5,6 @@ node{
   stage('Compile-Package'){
     sh 'mvn package'
   }
-  stage('Clean-up-app'){
-    sh '
-	if pgrep -x gs-serving-web-content-0.1.0.jar > /dev/null
-	then
-	   ps | grep gs-serving-web-content-0.1.0.jar | awk {'print $1'} | head -n 1 | xargs kill -6
-        fi
-       '
-       }
   stage('Docker-login'){
    sh 'docker login --username=ukulkarni --password=Uttara@123'
   }
